@@ -1,5 +1,8 @@
-// Base URL from environment variable or fallback to localhost:5000
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/recipes';
+// Base URL: Prioritizes environment variable (for separate frontend & backend hosting)
+// Falls back to relative path in production or localhost:5000 in development
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.PROD ? '/api/recipes' : 'http://localhost:5000/api/recipes');
 
 // Helper to handle API responses and throw readable error messages
 const handleResponse = async (response) => {
